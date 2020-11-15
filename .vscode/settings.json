@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/Users/WorkAccount/.local/share/virtualenvs/django-react-38JvdisA/bin/python"
+    "python.pythonPath": "/Users/WorkAccount/.local/share/virtualenvs/django-react-38JvdisA/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
