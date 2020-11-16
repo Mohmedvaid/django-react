@@ -4,10 +4,10 @@ import {GET_LEADS} from './types'
 // GET Leads
 export const getLeads = () => dispatch => {
     axios.get('/api/leads/')
-    .then(res =>{
+    .then(res => {
         dispatch({
-            types: GET_LEADS,
+            type: GET_LEADS,
             payload: res.data
         })
-    }).catch(err => console.log(err))
+    })
 }
