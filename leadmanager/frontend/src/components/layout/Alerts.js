@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { withAlert } from 'react-alert';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import errors from '../../reducers/errors';
 
 
 export class Alerts extends Component {
@@ -10,9 +11,15 @@ export class Alerts extends Component {
     }
 
     componentDidUpdate(prevProps){
-        const {error, alert } = this.props;
+        const {error, alert, message } = this.props;
         if(error !== prevProps.error){
-            alert.error("There is an error")
+            if(error.msg.name) alert.error(`Name: ${error.msg.name.join()}`);
+            if(error.msg.email) alert.error(`Email: ${error.msg.email.join()}`);
+            if(error.msg.message) alert.error(`Message: ${error.msg.message.join()}`);
+        }
+        if(message !== prevProps.message){
+            if(message.deleteLead) alert.success(message.deleteLead);
+            if(message.addLead) alert.success(message.addLead);
         }
     }
     render() {
@@ -21,7 +28,8 @@ export class Alerts extends Component {
 }
 
 const mapStateToProps = state => ({
-    error: state.errors
+    error: state.errors,
+    message: state.messages
 })
 
 export default connect(mapStateToProps)(withAlert()(Alerts));
