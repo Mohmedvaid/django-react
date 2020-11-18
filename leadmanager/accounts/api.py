@@ -32,4 +32,13 @@ class LoginAPI(generics.GenericAPIView):
 
 
 
-# Get
+# Get user
+class UserAPI(generics.RetrieveAPIView):
+    permissions = [
+        permissions.IsAuthenticated,
+    ]
+
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
